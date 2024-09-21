@@ -40,4 +40,6 @@ def single_var_no_intercept_regression(x, y):
     return beta_hat
 
 def single_var_intercept_regression(x, y):
+    z = x - np.mean(x)
 
+    beta_hat = (z.T @ y) / (z.T @ z)
