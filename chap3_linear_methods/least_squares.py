@@ -8,6 +8,9 @@ def matrix_ols(X, y):
     X (numpy array): n x (p + 1) matrix of independent observations. P is the number of independent variables and each column represents n observations for the variable.
     y (numpy vector): n x 1 column vector of dependent observations
     """
+    intercept_column = np.ones(X.shape[0], 1)
+    X  = np.hstack((intercept_column, X))
+
 
     covar_matrix = X.T @ X
 
@@ -28,6 +31,9 @@ def gram_schimdt_ols(X, y):
     X (numpy array): n x (p + 1) matrix of independent observations. p is the number of independent variables and each column represents n observations for the variable.
     y (numpy vector): n x 1 column vector of dependent observations
     """
+    intercept_column = np.ones(X.shape[0], 1)
+    X  = np.hstack((intercept_column, X))
+
 
     Q, R = np.linalg.qr(X)
 
@@ -43,3 +49,4 @@ def single_var_intercept_regression(x, y):
     z = x - np.mean(x)
 
     beta_hat = (z.T @ y) / (z.T @ z)
+
