@@ -5,7 +5,7 @@ def matrix_ols(X, y):
     Solves OLS using matrix inversion
 
     Parameters:
-    X (numpy array): n x (p + 1) matrix of independent observations. P is the number of independent variables and each column represents n observations for the variable.
+    X (numpy array): n x p matrix of independent observations. P is the number of independent variables and each column represents n observations for the variable.
     y (numpy vector): n x 1 column vector of dependent observations
     """
     intercept_column = np.ones(X.shape[0], 1)
@@ -24,19 +24,18 @@ def matrix_ols(X, y):
     return beta_hat
 
 def gram_schimdt_ols(X, y):
-     """
+    """
     Solves OLS using succesive orthogonalization
 
     Parameters:
-    X (numpy array): n x (p + 1) matrix of independent observations. p is the number of independent variables and each column represents n observations for the variable.
+    X (numpy array): n x p matrix of independent observations. p is the number of independent variables and each column represents n observations for the variable.
     y (numpy vector): n x 1 column vector of dependent observations
     """
+    
     intercept_column = np.ones(X.shape[0], 1)
     X  = np.hstack((intercept_column, X))
-
-
+    
     Q, R = np.linalg.qr(X)
-
     beta_hat = np.linalg.inv(R) @  Q.T @ y
 
 def single_var_no_intercept_regression(x, y):
